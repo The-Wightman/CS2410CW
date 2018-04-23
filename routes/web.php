@@ -65,3 +65,12 @@ Route::middleware('auth')->post('deleteevent/{id}' , 'EventController@deleteeven
 //Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are take the inputted extension createevent/{id} and pass it and the request to the EventController@create. The route is named create.event for easier calling.
 Route::middleware('auth')->post('createevent','EventController@create')->name('create.event');
 
+//Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are return the the url extension updateuser{ID} with the content created by the UserController@alteruser command, and name this alteruser to allow easier calling.
+Route::middleware('auth')->get('updateuser/{id}', 'UserController@alteruser')->name('alteruser');
+
+//Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are take the inputted extension updateuser/{id} and pass it and the request to the UserController@updateuser. The route is named updateuser for easier calling and the ID value is pulled from the request.
+Route::middleware('auth')->post('updateuser/{id}' , 'UserController@updateuser')->name('updateuser');
+
+//Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are take the inputted extension deleteevent/{id} and pass it and the request to the EventController@deleteevent. The route is named deleteevent for easier calling and the ID value is pulled from the request.
+Route::middleware('auth')->post('deleteuser/{id}' , 'UserController@deleteuser')->name('deleteuser');
+

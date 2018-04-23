@@ -16,7 +16,8 @@
 <td> {{$event->Name}} </td>
 <td> {{$event->Category}} </td>
 <td> {{$event->Planned_for}} </td>
-<td> {{$event->Organiser}} </td>
+<?php $user = App\User::find($event->user_id); ?>
+<td> {{$user->name}} </td>
 <td> {{$event->place}} </td>
 <td> {{$event->likes}} </td>
 <td><a href= "{{route('show',$event->id)}}">View event</a></td>
@@ -26,17 +27,4 @@
  </tbody>
 </table>
 
-<!-- Scripts -->
 
-<script type="text/javascript" >
-
-$(document).ready(function() {
-    $('#contacts').dataTable();
-
-$('#contacts tbody').on('click', 'tr', function () {
-    var name = $('td', this).eq(1).text();
-    var link = $('td', this).eq(0).find('a');
-    alert('You clicked on ' + name + '\'s row');
-    window.location=link.attr('href');
-});
- </script>

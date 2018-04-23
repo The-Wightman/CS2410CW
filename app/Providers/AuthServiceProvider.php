@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Event;
+use Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('AuthCheck', function ($user, $event) {
         return $event->user_id == $user->id;
+	 });
+
+	Gate::define('AuthCheckUser', function ($user) {
+        return $user->id == Auth::user()->id;
 	 });
 
 	

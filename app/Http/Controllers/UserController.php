@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 use App\Event;
 use App\User;
+use App\Image;
+
 use Auth;
+use Gate;
 
 /**
 	The User controller class oversees any action performed on an User and provides functions for listing and viewing users and user profiles and is an extension of the {@link Controller} class.
@@ -73,6 +79,71 @@ class UserController extends Controller
 			break;
 		}
 	}
+	
+		/**
+			Purpose: Allow a user to modify his account
+			Parameters: A single user ID value
+			Description:The user passes in the ID of the user they wish to modify, that user is retrieved from the database and then checked against the current users ID to ensure the event is being modified by the owner and then returns the updateuser view with an array containing all of the current changeable user information.
+			
+		*/
+		public function alteruser($id)
+		{
+			$user=User::find($id);
+			if (Gate::allows('AuthCheckUser', $user))
+			{
+				return view('updateuser',array('user' => $user));
+			}
+		}
+
+		/**
+			Purpose: Update a User
+			Parameters: A request from the updateuser.blade.php form and a User ID
+			Description: The passed ID is used to create a new local variable version of the user being modified. Then the updated fields are overwritten using the values inputted into the form.. Once complete redirect them to the userprofile route with the user ID so the user can see the updates have been completed.
+			
+		*/
+		public function updateuser(Request $request,$id)
+		{
+			$user = User::find($id);
+			$user->Name = $request->input('Name');
+			$user->email = $request->input('email');
+			$user->phone = $request->input('phone');			
+			$user->save();
+			
+			
+			return redirect()->route('userprofile',$id);
+		}
+
+		/**
+			Purpose: Allow the owner of an account to delete it from the website.
+			Parameters: A user ID
+			Description: The user ID is used to bring the matching user into a local variable and all images that correspond to the loaded user into a second local variable. The current users ID is checked to ensure they are the owner of the account, if they are for each event related to the user it deletes each event. Once this process has finished you are redirected back to the list of all events as the current page no longer exists.
+			
+		*/
+		public function deleteuser($id)
+		{
+			$user=User::find($id);
+			$events=Event::query()->where('user_id', '=',$id)->get();
+			if (Gate::allows('AuthCheckUser', $id))
+			{
+				foreach($events as $event)
+				{
+					$images=Image::query()->where('event_id', '=',$event->id)->get();
+					foreach($images as $image)
+					{
+						$entry= "public/uploads/" . $image->Name; 
+						Storage::delete($entry);
+						$event->delete($event->id);
+					}					
+				}
+			
+								
+			$user->delete($user->id);
+			return redirect()->route('list');
+		}
+			
+		
+	}
+	
 
 
 	
