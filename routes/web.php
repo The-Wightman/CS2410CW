@@ -46,7 +46,7 @@ Route::middleware('auth')->post('updateevent/{id}' , 'EventController@updateeven
 
 Route::middleware('auth')->post('deleteevent/{id}' , 'EventController@deleteevent')->name('deleteevent');
 
-Route::get('createevent','EventController@createevent')->name('createevent');
+Route::middleware('auth')->get('createevent','EventController@createevent')->name('createevent');
 
 Route::middleware('auth')->post('createevent','EventController@create')->name('create.event');
 
