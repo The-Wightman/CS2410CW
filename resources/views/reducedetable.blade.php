@@ -26,6 +26,7 @@
 				<img src = "{{asset('storage/uploads/'. $img->Name)}}" width="90" height ="100"></img>
 				@else
 				<p>No image </p>
+				@endif
 <td> {{$event->likes}} </td>
 <td><a href= "{{route('show',$event->id)}}" class = "form-control btn btn-primary">View event</a></td>
 
