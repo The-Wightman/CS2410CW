@@ -44,7 +44,7 @@
 <td> {{$event->user_id}}</td>
 <td> {{$user->email }} </td>
 <td> {{$event->likes}} </td>
-<td><a href= "{{route('show',$event->id)}}">View event</a></td>
+<td><a href= "{{route('show',$event->id)}}" class = "form-control btn btn-primary">View event</a></td>
 
  </tr>
  @endforeach
