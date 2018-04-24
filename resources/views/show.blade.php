@@ -57,6 +57,7 @@
 	
 					</br>
 					</br>
+					@if (Auth::check())
 					@if (Auth::User()->id == $event->user_id)
 						<a href= "{{route('alterevent',$event->id)}}" class = "form-control btn btn-primary">Edit event</a>
 					
@@ -68,6 +69,7 @@
     						</form>
 						</br>
 					
+					@endif
 					@endif
 					</div>
 				</div>
