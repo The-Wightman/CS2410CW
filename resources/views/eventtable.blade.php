@@ -1,8 +1,4 @@
-<div class="container">
-    <div class="row ">
-           <div class="panel panel-default">
-                <div class="panel-body col-sm-12">
-		
+	
 		<table class="table table-striped table-bordered table-hover">
  			<thead>
  				<tr>
