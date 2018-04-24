@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row ">
            <div class="panel panel-default">
                 <div class="panel-body col-sm-12">
 		
