@@ -11,6 +11,8 @@
  <h2>User Email: {{ $user->email }}</h2>
  <h2>User Phonenumber: {{$user->phone}}</h2>
  <h2>User ID: {{ $user->id }} </h2>
+
+	<div class="col-md-12 col-xs-12">
 			@if (Auth::User()->id == $user->id)
 				<a href= "{{route('alteruser',$user->id)}}" class = "form-control btn btn-primary">Edit Details</a>
 				</br>
@@ -21,11 +23,11 @@
     						</form>
 						</br>
 @endif
-
- 	</div>
+					</div>
+ 				</div>
+			</div>
+		</div>
 	</div>
-	</div>
-</div>
 <div class="row">
         <div class="col-md-12 col-xs-12">
             <div class="panel panel-default">
