@@ -32,8 +32,8 @@
                			<div class="panel-heading">Event Details</div>
                 			<div class="panel-body">
  					<li>Category: {{ $event->Category }}</li>
- 					<li>Event Date: {{ $event->Planned_for }}</li>
- 					<li>Creation Date: {{ $event->Created_on }}</li>
+ 					<li>Event Date: <?php echo date ('d-m-y H:i',strtotime($event->Description)) ?> </li>
+ 					<li>Creation Date: <?php echo date ('d-m-y H:i',strtotime($event->Description)) ?></li>
  					<li>Organiser: {{ $event->Organiser }}</li>
  					<li>Description: {{ $event->Description }}</li>
  					<li>Location: {{ $event->place }}</li> 

@@ -16,7 +16,7 @@
  <tr>
 <td> {{$event->Name}} </td>
 <td> {{$event->Category}} </td>
-<td> {{$event->Planned_for}} </td>
+<td> <?php echo date ('d-m-y H:i',strtotime($event->Description)) ?> </td>
 <?php $user = App\User::find($event->user_id); ?>
 <td> {{$user->name}} </td>
 <td> {{$event->place}} </td>

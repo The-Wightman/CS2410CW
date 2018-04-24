@@ -27,7 +27,7 @@
 				<td> {{$event->Created_on}} </td>
 				<?php $user = App\User::find($event->user_id); ?>
 				<td> {{$user->name}} </td>
-				<td> {{$event->Description}} </td>
+				<td> <?php echo date ('d-m-y H:i',strtotime($event->Description)) ?> </td>
 				<td> {{$event->place}} </td>
 				<td style= "max-width:100px; max-height:150px;" >
 				<?php $img = App\Image::where('event_id', '=', $event->id)->get()->first();?>

@@ -23,7 +23,7 @@
  				  <option value="13">Order by Location (DESC)</option>
    				  </select>
 				 <button type="submit" class="btn btn-primary">
-                                   Filter
+                                   Apply
                                 </button>
 				</form>
 				</div>
