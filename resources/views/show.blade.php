@@ -59,19 +59,15 @@
 					</br>
 					@if (Auth::User()->id == $event->user_id)
 						<a href= "{{route('alterevent',$event->id)}}" class = "form-control btn btn-primary">Edit event</a>
-					@else
-						<a href= "{{route('show',$event->id)}}" class = "form-control btn btn-danger " role="button" aria-disabled="true">Edit event</a>
-					@endif
+					
 					</br>
 					</br>
-					@if (Auth::User()->id == $event->user_id)
 						<form action="{{route('deleteevent', $event->id)}}" method="POST">
        						 {{csrf_field()}}
       						  <input class = "form-control btn btn-primary" type = "submit" value = "Delete event">
     						</form>
 						</br>
-					@else
-						<a href= "{{route('show',$event->id)}}" class = "form-control btn btn-danger " role="button" aria-disabled="true">Delete event</a>
+					
 					@endif
 					</div>
 				</div>
@@ -84,7 +80,7 @@
 				<?php $images = App\Image::where('event_id', '=', $event->id)->get(); ?>
 				@if(!$images->isEmpty())
 				@foreach($images as $img)				
-					<img src = "{{asset('storage/uploads/'. $img->Name)}}"></img>
+					<img src = "{{asset('storage/uploads/'. $img->Name)}}" width="200" height ="200"></img>
 				@endforeach
 					
 				@else
