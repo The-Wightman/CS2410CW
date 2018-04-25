@@ -142,16 +142,28 @@ class UserController extends Controller
 			return redirect()->route('list');
 		}
 	}
+		/**
+			Purpose: Allow the owner of an account to visit the update password page
+			Parameters: None
+			Description: return the changepassword.blade.php view to the user.
+			
+		*/
 	
 		public function updateuserpass()
 		{
         		return view('changepassword');
     		}
 		
+		/**
+			Purpose: Allow the owner of an account to update the password information
+			Parameters:A request from the changepassword.blade.php form
+			Description: Check if the provided password meets the hashed version stored in this users database entry , if it doesnt return an error message telling them it is doesnt match. If the entries match then validate that the new password meets the requirements for a password on the website via a validate request. Then call the Users information to a local variable , encrypt the new password and then store it as that users password, save the entry to the database and then return to the home screen.
+			
+		*/
 		public function changeuserpass(Request $request)
 		{
 			if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
-			return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+			return redirect()->back()->with("error","Password given does not much current password.");
 		}		
 		$validatedData = $request->validate
 		([

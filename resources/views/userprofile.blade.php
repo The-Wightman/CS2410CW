@@ -14,14 +14,21 @@
 
 	<div class="col-md-4 col-xs-4">
 			@if (Auth::User()->id == $user->id)
+				<div>
 				<a href= "{{route('alteruser',$user->id)}}" class = "form-control btn btn-primary">Edit Details</a>
+				</div>
 				</br>
-				</br>
-				<form action="{{route('deleteuser', $user->id)}}" method="POST">
+				<form action="{{route('updatepassword')}}" method="POST">
+       						{{csrf_field()}}
+      					  <input class = "form-control btn btn-primary" type = "submit" value = "Update password">
+    				</form>
+						
+					<form action="{{route('deleteuser', $user->id)}}" method="POST">
        						 {{csrf_field()}}
-      						  <input class = "form-control btn btn-primary" type = "submit" value = "Delete account">
+      					  <input class = "form-control btn btn-primary" type = "submit" value = "Delete account">
     						</form>
 						</br>
+								
 @endif
 					</div>
  				</div>

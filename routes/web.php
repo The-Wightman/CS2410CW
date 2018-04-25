@@ -77,7 +77,7 @@ Route::middleware('auth')->post('updateuser/{id}' , 'UserController@updateuser')
 //Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are take the inputted extension deleteevent/{id} and pass it and the request to the EventController@deleteevent. The route is named deleteevent for easier calling and the ID value is pulled from the request.
 Route::middleware('auth')->post('deleteuser/{id}' , 'UserController@deleteuser')->name('deleteuser');
 
-//Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are take the inputted form from changepassword and pass it and the request to the UserController@. The route is named changepassword for easier calling.
+//Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are take the inputted form from changepassword and pass it and the request to the UserController@changeuserpass. The route is named changepassword for easier calling.
 Route::middleware('auth')->post('/changePassword','UserController@changeuserpass')->name('changePassword');
 
 
