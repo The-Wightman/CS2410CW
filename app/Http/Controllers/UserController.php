@@ -145,7 +145,7 @@ class UserController extends Controller
 	
 		public function updateuserpass()
 		{
-        		return view('auth.changepassword');
+        		return view('changepassword');
     		}
 		
 		public function changeuserpass(Request $request)
