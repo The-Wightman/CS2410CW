@@ -35,6 +35,9 @@ Route::get('showcategory/{category}', 'EventController@showbytype')->name('categ
 //Return the the url extension home with the content created by the HomeController@index command, and name this route home to allow easier calling.
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Return the the url extension changepassword with the content created by the UserController@changeuserpass command, and name this route home to allow easier calling.
+Route::middleware('auth')->get('/changePassword','UserController@updateuserpass')->name('updatepassword');
+
 //This sets up the routes for the login and authentication pages login and register
 Auth::routes();
 
@@ -73,4 +76,8 @@ Route::middleware('auth')->post('updateuser/{id}' , 'UserController@updateuser')
 
 //Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are take the inputted extension deleteevent/{id} and pass it and the request to the EventController@deleteevent. The route is named deleteevent for easier calling and the ID value is pulled from the request.
 Route::middleware('auth')->post('deleteuser/{id}' , 'UserController@deleteuser')->name('deleteuser');
+
+//Check if the User making the request is an authorised user. If they arent then reroute to the login screen. If they are take the inputted form from changepassword and pass it and the request to the UserController@. The route is named changepassword for easier calling.
+Route::middleware('auth')->post('/changePassword','UserController@changeuserpass')->name('changePassword');
+
 

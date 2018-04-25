@@ -12,6 +12,7 @@ use App\Image;
 
 use Auth;
 use Gate;
+use Hash;
 
 /**
 	The User controller class oversees any action performed on an User and provides functions for listing and viewing users and user profiles and is an extension of the {@link Controller} class.
@@ -140,9 +141,32 @@ class UserController extends Controller
 			$user->delete($user->id);
 			return redirect()->route('list');
 		}
+	}
+	
+		public function updateuserpass()
+		{
+        		return view('auth.changepassword');
+    		}
+		
+		public function changeuserpass(Request $request)
+		{
+			if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+			return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+		}		
+		$validatedData = $request->validate
+		([
+			'current-password' => 'required',
+			'new-password' => 'required|string|min:6|confirmed',
+		]);
+		$user = Auth::user();
+		$user->password = bcrypt($request->get('new-password'));
+		$user->save();
+		return redirect()->route('home');
+}
+
 			
 		
-	}
+	
 	
 
 

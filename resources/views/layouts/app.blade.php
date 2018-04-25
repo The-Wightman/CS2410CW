@@ -76,6 +76,10 @@
                                            	 Create an Event
                                        		</a>
                                    	</li>
+					<li>
+						<a href = "{{route('updatepassword')}}" >
+						Change password
+						</a>
 					</li>
 					<li>
                                         	<a href="{{ route('logout') }}"
